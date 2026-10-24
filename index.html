@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Fawzy Mahmoud Adam - Interactive CV</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration & Custom Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0ea5e9', // Cyan
+                        secondary: '#8b5cf6', // Purple
+                        darkBg: '#0f172a',
+                        glassBg: 'rgba(30, 41, 59, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0f172a;
+            background-image: radial-gradient(circle at 15% 50%, rgba(14, 165, 233, 0.15), transparent 25%),
+                              radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: var(--glassBg, rgba(30, 41, 59, 0.7));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Timeline dot glowing effect */
+        .timeline-dot {
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.6);
+        }
+
+        /* Profile image fallback handling */
+        .profile-img-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            overflow: hidden;
+            padding: 4px;
+        }
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background-color: #1e293b;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(to right, #0ea5e9, #8b5cf6);
+            color: white;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-300 antialiased min-h-screen relative selection:bg-primary selection:text-white">
+
+    <div class="max-w-6xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-8">
+        
+        <!-- Left Sidebar / Sticky Profile -->
+        <aside class="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-6">
+            <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center sticky top-8 fade-in-up">
+                
+                <!-- Profile Image -->
+                <div class="profile-img-container mb-4 shadow-lg shadow-cyan-500/20">
+                    <!-- Added onerror fallback to display initials if the image link fails -->
+                    <img src="https://raw.githubusercontent.com/loukafawzy1985-spec/Mycard/main/alaa.jpg" 
+                         alt="Alaa Fawzy Mahmoud Adam" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display:none; position:absolute;">AF</span>
+                </div>
+
+                <!-- Name & Title -->
+                <h1 class="text-2xl font-bold text-white mb-1 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                    Alaa Fawzy
+                </h1>
+                <h2 class="text-sm font-medium text-slate-400 mb-4 uppercase tracking-wider">ICT HOD & Educator</h2>
+
+                <!-- Contact Info -->
+                <div class="w-full flex flex-col gap-3 text-sm text-left border-t border-slate-700 pt-4 mt-2">
+                    <div class="flex items-center gap-3 hover:text-white transition-colors cursor-default">
+                        <i class="fa-solid fa-location-dot w-5 text-primary text-center"></i>
+                        <span>Alexandria, Egypt</span>
+                    </div>
+                    <a href="tel:+201006808425" class="flex items-center gap-3 hover:text-white transition-colors">
+                        <i class="fa-solid fa-phone w-5 text-primary text-center"></i>
+                        <span>+20 100 680 8425</span>
+                    </a>
+                    <a href="mailto:loukafawzy1985@gmail.com" class="flex items-center gap-3 hover:text-white transition-colors break-all">
+                        <i class="fa-solid fa-envelope w-5 text-primary text-center"></i>
+                        <span>loukafawzy1985@gmail.com</span>
+                    </a>
+                </div>
+
+                <!-- Links & Actions -->
+                <div class="w-full flex flex-col gap-3 border-t border-slate-700 pt-4 mt-4">
+                    <!-- AI Video Animation Link -->
+                    <a href="https://drive.google.com/drive/folders/1pFgpEqfbH2bCV1h9JE8qV2JcBUuGABFl?usp=drive_link" target="_blank" class="w-full group relative inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-all duration-200 bg-slate-800 border border-slate-700 rounded-xl hover:bg-slate-700 hover:border-primary overflow-hidden">
+                        <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-primary"></span>
+                        <i class="fa-solid fa-play mr-2 text-secondary group-hover:text-primary transition-colors"></i>
+                        AI Video Animation
+                    </a>
+                    
+                    <!-- Reference to Original CV Document -->
+                    <div class="text-xs text-center text-slate-500 mt-2 bg-slate-800/50 p-2 rounded-lg border border-slate-700/50">
+                        <i class="fa-regular fa-file-pdf mr-1"></i> Based on <span class="text-slate-300 font-medium">Alaa_Fawzy_CV.pdf</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Main Content -->
+        <main class="w-full md:w-2/3 lg:w-3/4 flex flex-col gap-8">
+            
+            <!-- Summary Section -->
+            <section class="glass-card rounded-2xl p-6 md:p-8 fade-in-up">
+                <h3 class="text-xl font-bold text-white mb-4 border-b border-slate-700 pb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-user-astronaut text-primary"></i> Professional Summary
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+                    An experienced and dedicated ICT Educational Leader and Computer Teacher with over 16 years of expertise in K-12 technology integration, curriculum delivery, and classroom management. Specialized in leveraging AI in education, instructional design, gamification, and emerging educational technologies to create engaging and productive learning environments. Proven track record in leading technology teams and implementing advanced solutions in top educational institutions.
+                </p>
+            </section>
+
+            <!-- Interactive Navigation Tabs -->
+            <div class="flex flex-wrap gap-2 md:gap-4 fade-in-up sticky top-4 z-10 bg-[#0f172a]/90 backdrop-blur-md p-2 rounded-xl border border-slate-800">
+                <button onclick="showSection('experience')" id="btn-experience" class="tab-btn active px-4 py-2 rounded-lg text-sm font-medium border border-slate-700 hover:bg-slate-800 transition-all">Experience</button>
+                <button onclick="showSection('certifications')" id="btn-certifications" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium border border-slate-700 hover:bg-slate-800 transition-all">AI & Certifications</button>
+                <button onclick="showSection('skills')" id="btn-skills" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium border border-slate-700 hover:bg-slate-800 transition-all">Skills & Tools</button>
+                <button onclick="showSection('education')" id="btn-education" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium border border-slate-700 hover:bg-slate-800 transition-all">Education</button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="relative min-h-[50vh]">
+                
+                <!-- EXPERIENCE SECTION -->
+                <section id="sec-experience" class="content-section fade-in-up block">
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-briefcase text-secondary"></i> Work Experience
+                        </h3>
+                        
+                        <div class="relative border-l border-slate-700 ml-3 md:ml-4 space-y-8">
+                            
+                            <!-- Job 1 -->
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-1.5 timeline-dot ring-4 ring-slate-900"></div>
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-1">
+                                    <h4 class="text-lg font-bold text-white">ICT Teacher & Team Leader (Upper Primary)</h4>
+                                    <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-md w-max mt-1 md:mt-0">2020 - Present</span>
+                                </div>
+                                <h5 class="text-sm font-medium text-slate-400 mb-3">Salah-Aldin International School (SIS)</h5>
+                                <ul class="list-disc list-outside ml-4 text-sm text-slate-300 space-y-1.5 marker:text-slate-500">
+                                    <li>Lead the ICT team to align curriculum standards and educational technology goals.</li>
+                                    <li>Design and deliver interactive computer science curricula, gamified lessons, and technology projects for upper primary students.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Job 2 -->
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute w-3 h-3 bg-slate-500 rounded-full -left-[6.5px] top-1.5 ring-4 ring-slate-900"></div>
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-1">
+                                    <h4 class="text-lg font-bold text-white">Computer Teacher (Junior, Middle & Senior)</h4>
+                                    <span class="text-xs font-medium text-slate-400 bg-slate-800 px-2 py-1 rounded-md w-max mt-1 md:mt-0">2015 - 2020</span>
+                                </div>
+                                <h5 class="text-sm font-medium text-slate-400 mb-3">Egyptian English Language School (EELS)</h5>
+                                <ul class="list-disc list-outside ml-4 text-sm text-slate-300 space-y-1.5 marker:text-slate-500">
+                                    <li>Taught Computer Studies across both National and Cambridge Primary Program (CPP) departments.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Job 3 -->
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute w-3 h-3 bg-slate-500 rounded-full -left-[6.5px] top-1.5 ring-4 ring-slate-900"></div>
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-1">
+                                    <h4 class="text-lg font-bold text-white">Computer Teacher (Elem, Middle & High)</h4>
+                                    <span class="text-xs font-medium text-slate-400 bg-slate-800 px-2 py-1 rounded-md w-max mt-1 md:mt-0">2010 - 2015</span>
+                                </div>
+                                <h5 class="text-sm font-medium text-slate-400 mb-3">Egyptian American School (EAS)</h5>
+                                <ul class="list-disc list-outside ml-4 text-sm text-slate-300 space-y-1.5 marker:text-slate-500">
+                                    <li>Instructed IT and computing classes across multiple educational stages.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Job 4 -->
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute w-3 h-3 bg-slate-600 rounded-full -left-[6.5px] top-1.5 ring-4 ring-slate-900"></div>
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-1">
+                                    <h4 class="text-base font-bold text-white">ICDL Instructor</h4>
+                                    <span class="text-xs font-medium text-slate-400">2010 (4 Months)</span>
+                                </div>
+                                <h5 class="text-sm text-slate-400 mb-1">Noor-IT Center</h5>
+                            </div>
+                            
+                             <!-- Job 5 -->
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute w-3 h-3 bg-slate-600 rounded-full -left-[6.5px] top-1.5 ring-4 ring-slate-900"></div>
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-1">
+                                    <h4 class="text-base font-bold text-white">IT Department Trainee</h4>
+                                    <span class="text-xs font-medium text-slate-400">2009 (3 Months)</span>
+                                </div>
+                                <h5 class="text-sm text-slate-400 mb-1">Al Arabia Computer Company</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CERTIFICATIONS & AI SECTION -->
+                <section id="sec-certifications" class="content-section fade-in-up hidden">
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-primary"></i> AI & Ed-Tech Certifications
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Cert Card 1 -->
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-primary transition-colors hover:shadow-lg hover:shadow-primary/10 group">
+                                <div class="text-3xl mb-3 text-primary group-hover:scale-110 transition-transform"><i class="fa-brands fa-google"></i></div>
+                                <h4 class="font-bold text-white text-sm">Gemini Certified Educator</h4>
+                                <p class="text-xs text-slate-400 mt-1">Google for Education (Oct 2025 - Oct 2028)</p>
+                            </div>
+                            
+                            <!-- Cert Card 2 -->
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-secondary transition-colors hover:shadow-lg hover:shadow-secondary/10 group">
+                                <div class="text-3xl mb-3 text-secondary group-hover:scale-110 transition-transform"><i class="fa-solid fa-robot"></i></div>
+                                <h4 class="font-bold text-white text-sm">One Million Prompters Certification</h4>
+                                <p class="text-xs text-slate-400 mt-1">Dubai Future Foundation & Dubai Centre for AI (2026)</p>
+                            </div>
+                            
+                             <!-- Cert Card 3 -->
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-primary transition-colors hover:shadow-lg hover:shadow-primary/10 group">
+                                <div class="text-3xl mb-3 text-primary group-hover:scale-110 transition-transform"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                <h4 class="font-bold text-white text-sm">Generative AI for Creatives & Marketing</h4>
+                                <p class="text-xs text-slate-400 mt-1">6-Month Diploma, Adobe Academy EGY (Aug 2025-Feb 2026)</p>
+                            </div>
+                            
+                            <!-- Cert Card 4 -->
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-secondary transition-colors hover:shadow-lg hover:shadow-secondary/10 group">
+                                <div class="text-3xl mb-3 text-secondary group-hover:scale-110 transition-transform"><i class="fa-solid fa-object-group"></i></div>
+                                <h4 class="font-bold text-white text-sm">Canva Essentials Certified</h4>
+                                <p class="text-xs text-slate-400 mt-1">Canva Design School (Oct 2024 | ID: 12cf5a)</p>
+                            </div>
+                        </div>
+
+                        <h4 class="text-md font-bold text-white mt-8 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user text-slate-400"></i> Specialized Workshops
+                        </h4>
+                        <ul class="list-disc list-outside ml-4 text-sm text-slate-300 space-y-2 marker:text-primary">
+                            <li><strong class="text-slate-100">AI Tools in Planning & Content Design</strong> - Skill-to-Hire Education (Jun 2026)</li>
+                            <li><strong class="text-slate-100">Arabian AI Forum</strong> - Tamkeen Foundation (Jun 2026)</li>
+                            <li><strong class="text-slate-100">AI Revolution & Tools Series</strong> - Int. Academy of Secrets Wisdom (2025-2026)</li>
+                            <li><strong class="text-slate-100">Innovate with AI</strong> - Effective Teacher Initiative (Nov 2025)</li>
+                            <li><strong class="text-slate-100">Teaching with AI</strong> - Al Rehab (Aug 2025)</li>
+                            <li><strong class="text-slate-100">AI in Teaching and Learning</strong> - PUA & TeachOgen (2024)</li>
+                            <li><strong class="text-slate-100">ALS AI Hackathon</strong> - American School of Alexandria (Jun 2024)</li>
+                            <li><strong class="text-slate-100">Creating Apps in the Classroom</strong> - Queensland University of Tech</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SKILLS SECTION -->
+                <section id="sec-skills" class="content-section fade-in-up hidden">
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-code text-secondary"></i> Technical & Soft Skills
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Skill Category 1 -->
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">AI & EdTech Tools</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary border border-primary/30 rounded-full text-xs font-medium">Claude AI</span>
+                                    <span class="px-3 py-1 bg-primary/10 text-primary border border-primary/30 rounded-full text-xs font-medium">NotebookLM</span>
+                                    <span class="px-3 py-1 bg-primary/10 text-primary border border-primary/30 rounded-full text-xs font-medium">Gemini</span>
+                                    <span class="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/30 rounded-full text-xs font-medium">Canva</span>
+                                    <span class="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/30 rounded-full text-xs font-medium">CapCut</span>
+                                    <span class="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/30 rounded-full text-xs font-medium">Photoshop</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">Kahoot</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">Wordwall</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">ElevenLabs</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">Renderforest</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill Category 2 -->
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">Programming & Tech</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">VB.Net</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">HTML</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">Databases</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">MCP</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">MCAD</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">MCSD</span>
+                                    <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-medium">iPad Ecosystem</span>
+                                </div>
+                            </div>
+
+                            <!-- Skill Category 3 -->
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">Core Soft Skills & Pedagogy</h4>
+                                <div class="flex flex-col gap-2 text-sm text-slate-300">
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> Lesson Plan Management & Assessment</div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> Classroom Management & SEN Engagement</div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> Active Leadership & Strategic Problem-Solving</div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> Time Management Under Pressure</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EDUCATION SECTION -->
+                <section id="sec-education" class="content-section fade-in-up hidden">
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-primary"></i> Education & Languages
+                        </h3>
+                        
+                        <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700 mb-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-bold text-white">Bachelor of Education</h4>
+                                <span class="text-xs font-medium text-slate-400 bg-slate-800 px-2 py-1 rounded-md">May 2005</span>
+                            </div>
+                            <p class="text-sm text-primary font-medium mb-1">Alexandria University</p>
+                            <ul class="list-disc list-inside text-sm text-slate-300">
+                                <li>Specialization: Biology</li>
+                                <li>Grade: Good</li>
+                            </ul>
+                        </div>
+
+                        <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider mt-8">Languages</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700 flex items-center justify-between">
+                                <span class="font-medium text-slate-200">Arabic</span>
+                                <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">Native / Bilingual</span>
+                            </div>
+                            <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700 flex items-center justify-between">
+                                <span class="font-medium text-slate-200">English</span>
+                                <span class="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded">B2 (Upper-Intermediate)</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Interactivity Script -->
+    <script>
+        // Tab Navigation Logic
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(sec => {
+                sec.classList.add('hidden');
+                sec.classList.remove('block');
+            });
+            
+            // Remove active state from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('hover:bg-slate-800');
+            });
+
+            // Show selected section
+            const targetSec = document.getElementById('sec-' + sectionId);
+            targetSec.classList.remove('hidden');
+            targetSec.classList.add('block');
+            
+            // Re-trigger animation
+            targetSec.classList.remove('visible');
+            void targetSec.offsetWidth; // trigger reflow
+            targetSec.classList.add('visible');
+
+            // Add active state to clicked button
+            const targetBtn = document.getElementById('btn-' + sectionId);
+            targetBtn.classList.add('active');
+            targetBtn.classList.remove('hover:bg-slate-800');
+        }
+
+        // Scroll Animation Observer (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
